@@ -18,10 +18,4 @@ class UnitTestsWithNoCollaboratorsTest {
 
     }
 
-    @Test
-    @DisplayName("3.11.4. HashMap")
-    void hashMapTest() {
-
-    }
-
 }
