@@ -6,12 +6,11 @@ package org.shvetsov.chapter_3;
  */
 public class FahrToCelcConverter {
 
-    //TODO: implement methods
     public static int toFahrenheit(int celcius) {
-        return 0;
+        return celcius * 9 / 5 + 32;
     }
 
     public static int toCelcius(int fahrenheit) {
-        return 0;
+        return (fahrenheit - 32) * 5 / 9;
     }
 }
