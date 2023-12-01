@@ -1,4 +1,4 @@
-package org.shvetsov.chapter_3;
+package org.shvetsov.Chapter3_UnitTestsWithNoCollaborators;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.shvetsov.chapter_3.UnitTestsWithNoCollaborators.reverse;
+import static org.shvetsov.Chapter3_UnitTestsWithNoCollaborators.UnitTestsWithNoCollaborators.reverse;
 
 class UnitTestsWithNoCollaboratorsTest {
 
