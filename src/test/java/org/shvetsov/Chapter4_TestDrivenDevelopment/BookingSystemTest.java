@@ -1,6 +1,13 @@
 package org.shvetsov.Chapter4_TestDrivenDevelopment;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * Your task is to write a (very) simplified version of a booking system. In fact, it can be written as a
@@ -20,4 +27,38 @@ import org.junit.jupiter.api.DisplayName;
 @DisplayName("4.11.3. Booking System")
 class BookingSystemTest {
 
+    BookingSystem bookingSystem;
+    @BeforeEach
+    void setUp() {
+        bookingSystem = new BookingSystem();
+    }
+
+    @Test
+    public void shouldBook() {
+        assertThat(bookingSystem.book(1)).isTrue();
+    }
+
+    @Test
+    public void shouldReturnBookingList() {
+        bookingSystem.book(1);
+        bookingSystem.book(3);
+        bookingSystem.book(7);
+        bookingSystem.book(23);
+        assertThat(bookingSystem.getBookedList()).hasSameElementsAs(List.of(1, 3, 7, 23));
+    }
+
+    @Test
+    public void shouldThrowIllegalArgumentException() {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> bookingSystem.book(77));
+    }
+
+    @Test
+    public void shouldNotAllowDoubleBookHour() {
+        boolean firstBookResult = bookingSystem.book(7);
+        boolean doubleBookResult = bookingSystem.book(7);
+
+        assertThat(firstBookResult).isTrue();
+        assertThat(doubleBookResult).isFalse();
+        assertThat(bookingSystem.getBookedList().size()).isEqualTo(1);
+    }
 }
