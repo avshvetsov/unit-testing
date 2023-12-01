@@ -1,4 +1,4 @@
-package org.shvetsov.chapter_3;
+package org.shvetsov.Chapter3_UnitTestsWithNoCollaborators;
 
 /**
  * Chapter 3. Unit Tests with no Collaborators

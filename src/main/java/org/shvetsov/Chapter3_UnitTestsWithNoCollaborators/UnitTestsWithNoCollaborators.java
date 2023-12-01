@@ -1,4 +1,4 @@
-package org.shvetsov.chapter_3;
+package org.shvetsov.Chapter3_UnitTestsWithNoCollaborators;
 
 import java.util.ArrayList;
 import java.util.List;
