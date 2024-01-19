@@ -1,24 +1,37 @@
 package org.shvetsov.Chapter5_MocksStubsAndDummies.RaceResult;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 public class RaceResultsService {
 
-    private final Collection<Client> clients = new HashSet<>();
+    private final Map<Client, List<RaceCategory>> clients = new HashMap<>();
+    private final Logger logger;
+
+    public RaceResultsService(Logger logger) {
+        this.logger = logger;
+    }
 
     public void addSubscriber(Client client) {
-        clients.add(client);
+        clients.put(client, Arrays.stream(RaceCategory.values()).toList());
+    }
+
+    public void addSubscriber(Client client, List<RaceCategory> raceCategory) {
+        clients.put(client, raceCategory);
     }
 
     public void send(Message message) {
-        for (Client client : clients) {
-            client.receive(message);
-        }
+        logger.log(message.getDate(), message.getMessage());
+        clients.forEach((client, raceCategories) -> {
+            if (raceCategories.contains(message.getCategory())) {
+                client.receive(message);
+            }
+        });
     }
 
     public void removeSubscriber(Client client) {
-        clients.remove(client);
+        if (clients.containsKey(client)) {
+            clients.remove(client);
+        } else throw new ClientNotSubscribedException("Client not subscribed");
     }
 }
 
